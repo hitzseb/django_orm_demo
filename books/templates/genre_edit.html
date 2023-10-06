@@ -1,0 +1,15 @@
+{% extends 'books_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <h3>Editar género</h3>
+
+  <form method="post" action="{% url 'genre_edit' pk=genre.pk %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn btn-primary" type="submit">Guardar</button>
+  </form>
+
+{% endblock %}

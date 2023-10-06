@@ -1,0 +1,27 @@
+{% extends 'books_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col text-center">
+        <img class="img-fluid rounded my-3" src={{book.cover}}>
+    </div>
+    <div class="col">
+        <h3>{{book.title}}</h3>
+        <p>
+            {% for genre in genres %}
+            <a class="text-decoration-none" href="{% url 'books_by_genre' genre %}">{{genre}}</a>
+            {% if not forloop.last %},{% endif %}
+            {% endfor %}
+        </p>
+        <p class="lead"><span class="fw-bold">Autor: </span>
+            <a class="text-decoration-none" href="{% url 'author_detail' book.author.pk %}">{{book.author.name}}</a>
+        </p>
+        <p class="lead"><span class="fw-bold">Fecha: </span>{{book.date}}</p>
+        <p>{{book.synopsis|linebreaks}}</p>
+    </div>
+</div>
+
+{% endblock %}
